@@ -1,13 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace TrackerUI
 {
     public partial class TournamentViewerForm : Form
@@ -27,7 +17,12 @@ namespace TrackerUI
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void roundLabel_Click(object sender, EventArgs e)
         {
 
         }
@@ -37,17 +32,27 @@ namespace TrackerUI
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void unplayedOnlyCheckbox_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void teamTwoName_Click(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void teamOneScoreLabel_Click(object sender, EventArgs e)
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void scoreButton_Click(object sender, EventArgs e)
         {
 
         }

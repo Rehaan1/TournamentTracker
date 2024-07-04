@@ -17,23 +17,24 @@ namespace TrackerUI
             InitializeComponent();
         }
 
-        private void tournamentPlayersLabel_Click(object sender, EventArgs e)
+        private void CreateTournamentForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void tournamentPlayersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void tournamentNameValue_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void selectTeamDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void deleteSelectedPrizeButton_Click(object sender, EventArgs e)
+        private void tournamentNameLabel_Click(object sender, EventArgs e)
         {
+
 
         }
     }

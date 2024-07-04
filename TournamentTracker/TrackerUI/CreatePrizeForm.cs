@@ -17,32 +17,7 @@ namespace TrackerUI
             InitializeComponent();
         }
 
-        private void headerLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void firstNameLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void firstNameValue_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void prizePercentageValue_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void prizeAmountValue_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void placeNameValue_TextChanged(object sender, EventArgs e)
+        private void placeNumberLabel_Click(object sender, EventArgs e)
         {
 
         }
