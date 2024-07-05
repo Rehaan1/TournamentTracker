@@ -1,11 +1,14 @@
 ﻿using Dapper;
 using System.Data;
+using System.Reflection;
 using TrackerLibrary.Models;
 
 namespace TrackerLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
+
+        private const string db = "Tournaments";
 
         /// <summary>
         /// Saves a new prize to the database.
@@ -22,7 +25,7 @@ namespace TrackerLibrary.DataAccess
             /** Note: The using statement ensures that the connection is closed and disposed when the code block exits. Also,
             * it is used to create a scope for the objects to be used.
             */
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
                 // This is a part of dapper library. It is used to pass the parameters to the stored procedure.
                 var p = new DynamicParameters();
@@ -53,7 +56,7 @@ namespace TrackerLibrary.DataAccess
         /// </returns>
         public PersonModel CreatePerson(PersonModel model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@FirstName", model.FirstName);
@@ -70,6 +73,24 @@ namespace TrackerLibrary.DataAccess
 
                 return model;
             }
+        }
+
+        /// <summary>
+        /// Returns all the people.
+        /// </summary>
+        /// <returns>
+        /// List of PersonModel objects.
+        /// </returns>
+        public List<PersonModel> GetPersonAll()
+        {
+            List<PersonModel> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
+            {
+                output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+
+            return output;
         }
     }
 }
