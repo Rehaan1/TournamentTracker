@@ -12,6 +12,7 @@ namespace TrackerLibrary.DataAccess
     {
 
         private const string PrizesFile = "PrizeModel.csv";
+        private const string PeopleFile = "PersonModel.csv";
 
         /// <summary>
         /// Saves a new prize to the text file.
@@ -46,6 +47,36 @@ namespace TrackerLibrary.DataAccess
 
             // Converge the prizes to List<string> and Save the List<string> to the text file
             prizes.SaveToPrizeFile(PrizesFile);
+
+            return model;
+        }
+
+        /// <summary>
+        /// Saves a new person to the database.
+        /// </summary>
+        /// <param name="model">
+        /// The person information
+        /// </param>
+        /// <returns>
+        /// The person information, including the unique identifier.
+        /// </returns>
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            List<string> fileLines = PeopleFile.FullFilePath().LoadFile();
+
+            List<PersonModel> people = fileLines.ConvertToPersonModels();
+
+            int currentId = 0;
+
+            if (people.Count > 0)
+            {
+                currentId = people.OrderByDescending(x => x.Id).First().Id;
+            }
+
+            model.Id = currentId + 1;
+            people.Add(model);
+
+            people.SaveToPeopleFile(PeopleFile);
 
             return model;
         }
