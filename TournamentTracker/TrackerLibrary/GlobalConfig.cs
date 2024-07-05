@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrackerLibrary.DataAccess;
+using System.Configuration;
 
 namespace TrackerLibrary
 {
@@ -42,6 +43,24 @@ namespace TrackerLibrary
                 TextConnector text = new TextConnector();
                 Connections.Add(text);
             }
+        }
+
+        /// <summary>
+        /// Returns the connection string for the specified name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static string ConnectionString(string name)
+        {
+            /** Note: System.Configuration.ConfigurationManager is used to access the configuration information for the application.
+             * It is an older way of accessing configuration information. The newer way is to use Microsoft.Extensions.Configuration.
+             * For the course of learning and following the tutorial , we will use the older way.
+             */
+
+            /** Note: the ConfigurationManager in the class library project accesses the configuration settings of the executing 
+             * application's configuration file which in our case is TrackerUI.
+             */
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
     }
 }

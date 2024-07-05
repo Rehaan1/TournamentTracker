@@ -10,3 +10,4 @@ E:\PROJECTS_FOR_REFERRAL\C# Tournament Project\TournamentTracker\TrackerLibrary\
 E:\PROJECTS_FOR_REFERRAL\C# Tournament Project\TournamentTracker\TrackerLibrary\obj\Debug\net6.0\TrackerLibrary.pdb
 E:\PROJECTS_FOR_REFERRAL\C# Tournament Project\TournamentTracker\TrackerLibrary\obj\Debug\net6.0\ref\TrackerLibrary.dll
 E:\PROJECTS_FOR_REFERRAL\C# Tournament Project\TournamentTracker\TrackerLibrary\obj\Debug\net6.0\TrackerLibrary.sourcelink.json
+E:\PROJECTS_FOR_REFERRAL\C# Tournament Project\TournamentTracker\TrackerLibrary\obj\Debug\net6.0\TrackerLibrary.csproj.AssemblyReference.cache
