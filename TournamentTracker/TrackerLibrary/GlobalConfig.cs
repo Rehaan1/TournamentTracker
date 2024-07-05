@@ -17,7 +17,7 @@ namespace TrackerLibrary
         /// <summary>
         /// This property holds the connections to the database and text files.
         /// <summary>
-        public static List<IDataConnection> Connections { get; private set; } = new List<IDataConnection>();
+        public static IDataConnection Connection { get; private set; }
 
         /// <summary>
         /// This method initializes the connections to the database and text files.
@@ -28,20 +28,21 @@ namespace TrackerLibrary
         /// <param name="textFiles">
         /// Initialize text files connection.
         /// </param>
-        public static void InitializeConnections(bool database, bool textFiles)
+        public static void InitializeConnections(DatabaseTypes db)
         {
-            if(database)
+            switch (db)
             {
-                // TODO -  Setup the SQL Connector Properly
-                SqlConnector sql = new SqlConnector();
-                Connections.Add(sql);
-            }
-
-            if (textFiles)
-            {
-                // TODO - Create the Text Connection
-                TextConnector text = new TextConnector();
-                Connections.Add(text);
+                case DatabaseTypes.Sql:
+                    SqlConnector sql = new SqlConnector();
+                    Connection = sql;
+                    break;
+                case DatabaseTypes.TextFile:
+                    // TODO - Create the Text Connection
+                    TextConnector text = new TextConnector();
+                    Connection = text;
+                    break;
+                default:
+                    break;
             }
         }
 
