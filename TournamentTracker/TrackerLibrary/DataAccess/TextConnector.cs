@@ -138,6 +138,19 @@ namespace TrackerLibrary.DataAccess
                 FullFilePath().
                 LoadFile().
                 ConvertToTournamentModels(TeamsFile, PeopleFile, PrizesFile);
+
+            int currentId = 0;
+
+            if (tournamentModels.Count > 0)
+            {
+                currentId = tournamentModels.OrderByDescending(x => x.Id).First().Id;
+            }
+
+            model.Id = currentId + 1;
+
+            tournamentModels.Add(model);
+
+            tournamentModels.SaveToTournamentFile(TournamentFile);
         }
     }
 }
