@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrackerLibrary.Models;
+﻿using TrackerLibrary.Models;
 
 namespace TrackerLibrary.DataAccess
 {
@@ -18,5 +13,7 @@ namespace TrackerLibrary.DataAccess
         TeamModel CreateTeam(TeamModel model);
 
         List<TeamModel> GetTeamAll();
+
+        TournamentModel CreateTournament(TournamentModel model);
     }
 }

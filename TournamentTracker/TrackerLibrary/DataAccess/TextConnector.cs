@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TrackerLibrary.DataAccess.TextHelpers;
 using TrackerLibrary.Models;
-using TrackerLibrary.DataAccess.TextHelpers;
 
 namespace TrackerLibrary.DataAccess
 {
@@ -14,6 +9,7 @@ namespace TrackerLibrary.DataAccess
         private const string PrizesFile = "PrizeModel.csv";
         private const string PeopleFile = "PersonModel.csv";
         private const string TeamsFile = "TeamModel.csv";
+        private const string TournamentFile = "TournamentModel.csv";
 
         /// <summary>
         /// Saves a new prize to the text file.
@@ -126,7 +122,22 @@ namespace TrackerLibrary.DataAccess
         /// </returns>
         public List<TeamModel> GetTeamAll()
         {
-            throw new NotImplementedException();
+            return TeamsFile.FullFilePath().LoadFile().ConvertToTeamModels(PeopleFile);
+        }
+
+        /// <summary>
+        /// Creates a new tournament.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>
+        /// Tournament information, including the unique identifier.
+        /// </returns>
+        public TournamentModel CreateTournament(TournamentModel model)
+        {
+            List<TournamentModel> tournamentModels = TournamentFile.
+                FullFilePath().
+                LoadFile().
+                ConvertToTournamentModels(TeamsFile, PeopleFile, PrizesFile);
         }
     }
 }

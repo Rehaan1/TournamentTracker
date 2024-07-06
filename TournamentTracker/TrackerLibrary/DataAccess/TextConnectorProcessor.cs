@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using TrackerLibrary.Models;
 
 namespace TrackerLibrary.DataAccess.TextHelpers
@@ -28,7 +23,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         /// </returns>
         public static string FullFilePath(this string fileName)
         {
-            return $"{ ConfigurationManager.AppSettings["filePath"] }\\{ fileName }";
+            return $"{ConfigurationManager.AppSettings["filePath"]}\\{fileName}";
         }
 
         /// <summary>
@@ -85,7 +80,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 
             foreach (PrizeModel p in models)
             {
-                lines.Add($"{ p.Id },{ p.PlaceNumber },{ p.PlaceName },{ p.PrizeAmount },{ p.PrizePercentage }");
+                lines.Add($"{p.Id},{p.PlaceNumber},{p.PlaceName},{p.PrizeAmount},{p.PrizePercentage}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
@@ -124,7 +119,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         /// <param name="models"></param>
         /// <param name="fileName"></param>
         public static void SaveToPeopleFile(this List<PersonModel> models, string fileName)
-        { 
+        {
             List<string> lines = new List<string>();
 
             foreach (PersonModel p in models)
@@ -211,6 +206,45 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
 
             output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
+
+        public static List<TournamentModel> ConvertToTournamentModels(
+            this List<string> lines,
+            string teamFile,
+            string peopleFile,
+            string prizeFile)
+        {
+            //id, TournamentName, EntryFee, (id|id|id - Entered Teams), (id|id|id - Prizes),
+            //(Rounds - id^id^id|id^id^id|id^id^id|)
+            List<TournamentModel> output = new List<TournamentModel>();
+            List<TeamModel> teams = teamFile.FullFilePath().LoadFile().ConvertToTeamModels(peopleFile);
+            List<PrizeModel> prizes = prizeFile.FullFilePath().LoadFile().ConvertToPrizeModels();
+
+            foreach (string line in lines)
+            {
+                TournamentModel tm = new TournamentModel();
+                string[] cols = line.Split(',');
+                tm.Id = int.Parse(cols[0]);
+                tm.TournamentName = cols[1];
+                tm.EntryFee = decimal.Parse(cols[2]);
+
+                string[] teamIds = cols[3].Split('|');
+                foreach (string id in teamIds)
+                {
+                    tm.EnteredTeams.Add(teams.Where(teams => teams.Id == int.Parse(id)).First());
+                }
+
+                string[] prizeIds = cols[4].Split('|');
+
+                foreach (string id in prizeIds)
+                {
+                    tm.Prizes.Add(prizes.Where(prizes => prizes.Id == int.Parse(id)).First());
+                }
+
+                // TODO: Capture Round Information
+            }
 
             return output;
         }
