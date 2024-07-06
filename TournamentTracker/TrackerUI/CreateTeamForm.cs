@@ -132,7 +132,7 @@ namespace TrackerUI
         {
             PersonModel p = (PersonModel)teamMembersListBox.SelectedItem;
 
-            if(p == null)
+            if (p == null)
             {
                 MessageBox.Show("You need to select a member to remove.");
                 return;
@@ -142,6 +142,18 @@ namespace TrackerUI
             availableTeamMembers.Add(p);
 
             WireUpLists();
+        }
+
+        private void createTeamButton_Click(object sender, EventArgs e)
+        {
+            TeamModel t = new TeamModel();
+
+            t.TeamName = teamNameValue.Text;
+            t.TeamMembers = selectedTeamMembers;
+
+            t = GlobalConfig.Connection.CreateTeam(t);
+
+            // TODO - If we aren't closing this form after creation, reset the form
         }
     }
 }
