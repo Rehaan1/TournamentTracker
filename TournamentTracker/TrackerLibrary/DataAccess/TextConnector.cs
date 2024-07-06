@@ -117,5 +117,16 @@ namespace TrackerLibrary.DataAccess
 
             return model;
         }
+
+        /// <summary>
+        /// Gets all the teams from the text file.
+        /// </summary>
+        /// <returns>
+        /// List of TeamModel objects.
+        /// </returns>
+        public List<TeamModel> GetTeamAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
