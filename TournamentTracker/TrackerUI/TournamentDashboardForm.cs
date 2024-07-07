@@ -22,7 +22,8 @@ namespace TrackerUI
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-
+            CreateTournamentForm frm = new CreateTournamentForm();
+            frm.Show();
         }
 
         private void loadExistingTournamentDropDown_SelectedIndexChanged(object sender, EventArgs e)
