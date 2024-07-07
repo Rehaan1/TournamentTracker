@@ -5,11 +5,13 @@ namespace TrackerLibrary.DataAccess
 {
     public class TextConnector : IDataConnection
     {
-
+        // @TODO: Refactor to use Global config values
         private const string PrizesFile = "PrizeModel.csv";
         private const string PeopleFile = "PersonModel.csv";
         private const string TeamsFile = "TeamModel.csv";
         private const string TournamentFile = "TournamentModel.csv";
+        private const string MatchupFile = "MatchupModel.csv";
+        private const string MatchupEntryFile = "MatchupEntryModel.csv";
 
         /// <summary>
         /// Saves a new prize to the text file.
@@ -147,6 +149,8 @@ namespace TrackerLibrary.DataAccess
             }
 
             model.Id = currentId + 1;
+
+            model.SaveRoundsToFile(MatchupFile, MatchupEntryFile);
 
             tournamentModels.Add(model);
 

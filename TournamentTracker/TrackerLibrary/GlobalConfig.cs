@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using TrackerLibrary.DataAccess;
-using System.Configuration;
 
 namespace TrackerLibrary
 {
@@ -14,6 +9,14 @@ namespace TrackerLibrary
     /// </summary>
     public static class GlobalConfig
     {
+
+        public const string PrizesFile = "PrizeModel.csv";
+        public const string PeopleFile = "PersonModel.csv";
+        public const string TeamsFile = "TeamModel.csv";
+        public const string TournamentFile = "TournamentModel.csv";
+        public const string MatchupFile = "MatchupModel.csv";
+        public const string MatchupEntryFile = "MatchupEntryModel.csv";
+
         /// <summary>
         /// This property holds the connections to the database and text files.
         /// <summary>
