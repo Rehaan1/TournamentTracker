@@ -53,6 +53,7 @@
             loadExistingTournamentDropDown.Name = "loadExistingTournamentDropDown";
             loadExistingTournamentDropDown.Size = new Size(537, 45);
             loadExistingTournamentDropDown.TabIndex = 20;
+            loadExistingTournamentDropDown.SelectedIndexChanged += loadExistingTournamentDropDown_SelectedIndexChanged;
             // 
             // loadExistingTournamentLabel
             // 
@@ -93,6 +94,7 @@
             createTournamentButton.TabIndex = 34;
             createTournamentButton.Text = "Create Tournament";
             createTournamentButton.UseVisualStyleBackColor = true;
+            createTournamentButton.Click += createTournamentButton_Click;
             // 
             // TournamentDashboardForm
             // 
@@ -106,7 +108,7 @@
             Controls.Add(loadExistingTournamentLabel);
             Controls.Add(headerLabel);
             Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Margin = new Padding(6, 6, 6, 6);
+            Margin = new Padding(6);
             Name = "TournamentDashboardForm";
             Text = "Tournament Dashboard";
             ResumeLayout(false);
