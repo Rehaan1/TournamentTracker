@@ -132,7 +132,7 @@ namespace TrackerLibrary.DataAccess
         /// <returns>
         /// Tournament information, including the unique identifier.
         /// </returns>
-        public TournamentModel CreateTournament(TournamentModel model)
+        public void CreateTournament(TournamentModel model)
         {
             List<TournamentModel> tournamentModels = TournamentFile.
                 FullFilePath().
