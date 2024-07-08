@@ -111,6 +111,7 @@
             matchupListBox.Name = "matchupListBox";
             matchupListBox.Size = new Size(442, 298);
             matchupListBox.TabIndex = 5;
+            matchupListBox.SelectedIndexChanged += matchupListBox_SelectedIndexChanged;
             // 
             // teamOneName
             // 
