@@ -18,7 +18,7 @@ namespace TrackerLibrary.DataAccess
         /// <returns>
         /// The prize information, including the unique identifier.
         /// </returns>
-        public PrizeModel CreatePrize(PrizeModel model)
+        public void CreatePrize(PrizeModel model)
         {
             // Creates a connection to the database.
             /** Note: The using statement ensures that the connection is closed and disposed when the code block exits. Also,
@@ -40,7 +40,6 @@ namespace TrackerLibrary.DataAccess
 
                 model.Id = p.Get<int>("@id");
 
-                return model;
             }
         }
 
@@ -53,7 +52,7 @@ namespace TrackerLibrary.DataAccess
         /// <returns>
         /// The person information, including the unique identifier.
         /// </returns>
-        public PersonModel CreatePerson(PersonModel model)
+        public void CreatePerson(PersonModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
@@ -70,7 +69,6 @@ namespace TrackerLibrary.DataAccess
 
                 model.Id = p.Get<int>("@id");
 
-                return model;
             }
         }
 
@@ -99,7 +97,7 @@ namespace TrackerLibrary.DataAccess
         /// <returns>
         /// The team information, including the unique identifier.
         /// </returns>
-        public TeamModel CreateTeam(TeamModel model)
+        public void CreateTeam(TeamModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString(db)))
             {
@@ -121,7 +119,6 @@ namespace TrackerLibrary.DataAccess
                     connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
                 }
 
-                return model;
             }
         }
 
@@ -169,6 +166,8 @@ namespace TrackerLibrary.DataAccess
                 SaveTournamentEntries(connection, model);
 
                 SaveTournamentRounds(connection, model);
+
+                TournamentLogic.UpdateTournamentResults(model);
             }
         }
 
